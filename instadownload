@@ -1,0 +1,14 @@
+import instaloader
+import re
+
+L = instaloader.Instaloader()
+url = input('url:')
+
+#input("Url: ")
+start = 'https://www.instagram.com/p/'
+end = '/?utm_medium=copy_link'
+s = str(url)
+print((s.split(start))[1].split(end)[0])
+url_final = (s.split(start))[1].split(end)[0]
+post = instaloader.Post.from_shortcode(L.context, url_final)
+L.download_post(post, url_final)
